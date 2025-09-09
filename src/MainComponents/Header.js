@@ -34,16 +34,22 @@ const Header = () => {
                         <Link to="/" className={`nav-link ${pathname === "/" ? "active" : ""}`}>Home</Link>
                         <Link to="/features" className={`nav-link ${pathname === "/features" ? "active" : ""}`}>Features</Link>
                         <Link to="/roles" className={`nav-link ${pathname === "/roles" ? "active" : ""}`}>Roles</Link>
-                        <Link to="/contact-us" className={`nav-link ${pathname === "/contact_us" ? "active" : ""}`}>Contact Us</Link>
+                        {/* <Link to="/contact-us" className={`nav-link ${pathname === "/contact_us" ? "active" : ""}`}>Contact Us</Link> */}
                         <Link to="/download" className={`nav-link ${pathname === "/download" ? "active" : ""}`}>Download</Link>
                     </nav>
 
                     {/* Button */}
-                    <a href="https://admin.elevorce.com" target="_blank" rel="noopener noreferrer" className="text-white text-decoration-none">
+                    {/* <a href="https://admin.elevorce.com" target="_blank" rel="noopener noreferrer" className="text-white text-decoration-none">
                         <button className="btn btn-primary">
                             Login
                         </button>
-                    </a>
+                    </a> */}
+                    <Link to="/inquiry" rel="noopener noreferrer" className="text-white text-decoration-none">
+                        <button className="btn btn-primary">
+                            Inquiry
+                            {/* INQUIRY */}
+                        </button>
+                    </Link>
                 </div>
 
                 {/* Overlay */}
@@ -60,17 +66,17 @@ const Header = () => {
                         <Link to="/" onClick={() => setOpen(false)} className={pathname === "/" ? "active" : ""}>Home</Link>
                         <Link to="/features" onClick={() => setOpen(false)} className={pathname === "/features" ? "active" : ""}>Features</Link>
                         <Link to="/roles" onClick={() => setOpen(false)} className={pathname === "/roles" ? "active" : ""}>Roles</Link>
-                        <Link to="/contact-us" onClick={() => setOpen(false)} className={pathname === "/contact-us" ? "active" : ""}>Contact Us</Link>
+                        {/* <Link to="/contact-us" onClick={() => setOpen(false)} className={pathname === "/contact-us" ? "active" : ""}>Contact Us</Link> */}
                         <Link to="/download" onClick={() => setOpen(false)} className={pathname === "/download" ? "active" : ""}>Download</Link>
 
                         <a
-                            href="https://admin.elevorce.com"
+                            href="inquiry"
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => setOpen(false)}
                             className="login-btn"
                         >
-                            Login
+                            Inquiry
                         </a>
                     </nav>
                 </div>

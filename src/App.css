@@ -59,7 +59,8 @@ button {
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  overflow-x: hidden;  /* ✅ keep horizontal scroll disabled here */
+  overflow-x: hidden;
+  /* ✅ keep horizontal scroll disabled here */
 }
 
 /* .layout-wrapper {
@@ -1804,6 +1805,11 @@ details[open]>summary {
   border: 1px solid #e5e7eb;
   border-radius: 0.75rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+
+  max-width: 100%;
+  overflow-x: hidden;
+
 }
 
 .form-group {
@@ -1846,6 +1852,54 @@ details[open]>summary {
   background: #2563eb;
   /* darker blue */
 }
+
+/* Responsive reCAPTCHA */
+/* ReCAPTCHA wrapper */
+.recaptcha-wrapper {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  overflow: hidden;
+  /* prevents horizontal scroll */
+}
+
+.recaptcha-wrapper>div {
+  transform: scale(1);
+  transform-origin: center;
+  /* keep centered */
+}
+
+/* Medium-small devices */
+@media (max-width: 400px) {
+  .contact-form {
+    padding: 1rem;
+  }
+
+  .recaptcha-wrapper {
+    justify-content: center;
+    width: 236px;
+    margin-left: 0px !important;
+  }
+
+  .recaptcha-wrapper>div {
+
+    transform: scale(0.75);
+  }
+}
+
+/* Very small devices */
+@media (max-width: 320px) {
+
+  .recaptcha-wrapper{
+  justify-content: center;
+
+  }
+  .recaptcha-wrapper>div {
+    transform: scale(0.75);
+  }
+}
+
+
 
 /* ✅ Responsive */
 @media (max-width: 768px) {

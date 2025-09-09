@@ -40,7 +40,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/features" element={<Features />} />
             <Route path="/roles" element={<Roles />} />
-            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/inquiry" element={<ContactUs />} />
             <Route path="/download" element={<Download />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
@@ -54,6 +54,6 @@ function App() {
       </BrowserRouter>
     </div>
   );
-}
+} 
 
 export default App;

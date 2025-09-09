@@ -10,14 +10,14 @@ export default function TermsOfConditions() {
     return (
         <div>
             {/* Header Section */}
-            <section className="hero-section bg-blue-600 text-white py-12 text-center">
-                <div className="container mx-auto">
-                    <h1 className="hero-title text-4xl font-bold">Terms of Service</h1>
+            <section className="hero-section">
+                <div className="container">
+                    <h1 className="hero-title">Terms of Service</h1>
                 </div>
             </section>
 
             {/* Terms Content */}
-            <section className="section__padding py-12">
+            <section className="section__padding">
                 <div className="container mx-auto px-6 max-w-4xl space-y-8 text-gray-700 leading-relaxed">
                     {[
                         {
@@ -113,9 +113,10 @@ export default function TermsOfConditions() {
                     ].map((item, index) => (
                         <motion.div
                             key={index}
-                            className="bg-gray-50 rounded-2xl p-6 shadow-sm"
+                            className="bg-gray-50 rounded-2xl"
+                            style={{ padding: "14px" }}
                         >
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                            <h3 className="text-xl font-semibold text-gray-900 mb-2">
                                 {item.title}
                             </h3>
                             {typeof item.text === "string" ? <p>{item.text}</p> : item.text}

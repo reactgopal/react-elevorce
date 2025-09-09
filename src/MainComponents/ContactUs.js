@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Contact } from "../Services/apiServices";
 import { toast } from "react-toastify";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({
@@ -10,35 +11,51 @@ const ContactUs = () => {
         subject: "",
         message: "",
     });
-    console.log(formData, "formdata");
     const [loading, setLoading] = useState(false);
     const [responseMsg, setResponseMsg] = useState("");
+    const [captchaValue, setCaptchaValue] = useState(null);
+    const captchaRef = useRef(null);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(name, "name");
-        console.log(value, "value ");
         setFormData((prev) => ({
             ...prev,
             [name]: value,
         }));
     };
 
+
+    const handleCaptchaChange = (value) => {
+        console.log("Captcha value:", value);
+        setCaptchaValue(value);
+    };
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        // 🔴 Captcha validation
+        if (!captchaValue) {
+            toast.error("Please verify reCAPTCHA!");
+            return;
+        }
+
         setLoading(true);
         setResponseMsg("");
 
-        Contact(formData).then((res) => {
+        Contact({ ...formData, "g-recaptcha-response": captchaValue }).then((res) => {
+            console.log(res, " response from contact us");
             if (!res?.success) {
                 toast.error(res.message);
                 setResponseMsg("❌ Failed to send message.");
 
             } else {
                 toast.success(res.message);
-
-                // setResponseMsg("✅ " + res.message);
                 setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+                setCaptchaValue(null);
+                captchaRef.current.reset();  // <-- reset captcha tick
+
             }
             setLoading(false);
         });
@@ -49,7 +66,7 @@ const ContactUs = () => {
             {/* Header */}
             <section className="hero-section">
                 <div className="container text-center">
-                    <h1 className="hero-title">Contact Us</h1>
+                    <h1 className="hero-title">Inquiry Form</h1>
                     {/* <p className="hero-text">E We are always excited to hear from you. If you have any suggestions,
                         feedback or questions, feel free to get in touch with us.</p> */}
                 </div>
@@ -57,7 +74,7 @@ const ContactUs = () => {
 
             {/* Contact Form */}
             <section className="contact-section">
-                <div className="container">
+                <div className="container" >
                     <div className="contact-row">
                         {/* Left Side Illustration */}
                         <div className="contact-image">
@@ -75,7 +92,7 @@ const ContactUs = () => {
                                     <input
                                         type="text"
                                         name="name"
-                                        placeholder="Name"
+                                        placeholder="Name*"
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
@@ -85,7 +102,7 @@ const ContactUs = () => {
                                     <input
                                         type="email"
                                         name="email"
-                                        placeholder="E-Mail"
+                                        placeholder="E-Mail*"
                                         value={formData.email}
                                         onChange={handleChange}
                                         required />
@@ -94,7 +111,7 @@ const ContactUs = () => {
                                     <input
                                         type="text"
                                         name="phone"
-                                        placeholder="Mobile Number"
+                                        placeholder="Mobile Number (optional)"
                                         value={formData.phone}
                                         onChange={handleChange}
                                     />
@@ -103,7 +120,7 @@ const ContactUs = () => {
                                     <input
                                         type="text"
                                         name="subject"
-                                        placeholder="Subject"
+                                        placeholder="Subject*"
                                         value={formData.subject}
                                         onChange={handleChange}
                                     />
@@ -112,15 +129,28 @@ const ContactUs = () => {
                                     <textarea
                                         rows={4}
                                         name="message"
-                                        placeholder="Message"
+                                        placeholder="Message*"
                                         value={formData.message}
                                         onChange={handleChange}
                                         required
                                     ></textarea>
                                 </div>
-                                {/* <button type="submit" className="contact-btn">
-                                    Submit
-                                </button> */}
+                                {/* 🔑 Add reCAPTCHA here */}
+                                <div className="form-group mt-3 recaptcha-wrapper">
+                                    <ReCAPTCHA
+                                        ref={captchaRef}
+                                        sitekey="6LfO-cErAAAAAD9wH28C9jb9yu4kRfExmv2Iu63X"
+                                        onChange={handleCaptchaChange}
+                                    />
+                                </div>
+
+                                {/* <div className="form-group mt-3">
+                                    <ReCAPTCHA
+                                        ref={captchaRef}                 // ✅ add ref
+                                        sitekey="6LfO-cErAAAAAD9wH28C9jb9yu4kRfExmv2Iu63X"  // 👉 Replace with your site key
+                                        onChange={handleCaptchaChange}
+                                    />
+                                </div> */}
                                 <button type="submit" className="contact-btn" disabled={loading}>
                                     {loading ? "Sending..." : "Submit"}
                                 </button>

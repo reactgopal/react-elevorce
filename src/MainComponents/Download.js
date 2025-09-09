@@ -49,10 +49,13 @@ const Download = () => {
                         transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.4 }}
                         viewport={{ once: true }}
                         className="download-app__buttons">
-                        <Link to="/download" className="btn btn-dark d-flex align-items-center">
+                        <Link to="https://apps.apple.com/us/app/elevorce/id6751950179" target="_blank" className="btn btn-dark d-flex align-items-center">
                             <i className="bi bi-apple me-2 fs-4"></i> App Store
                         </Link>
-                        <Link to="/download" className="btn btn-success d-flex align-items-center">
+                        {/* <Link to="/https://play.google.com/store/apps/details?id=com.iconfisys.elevorce&hl=en_IN" target="_blank" className="btn btn-success d-flex align-items-center">
+                            <i className="bi bi-google-play me-2 fs-4"></i> Google Play
+                        </Link> */}
+                        <Link to="https://play.google.com/store/apps/details?id=your_app_id" target="_blank" className="btn btn-success d-flex align-items-center">
                             <i className="bi bi-google-play me-2 fs-4"></i> Google Play
                         </Link>
                     </motion.div>

@@ -32,8 +32,8 @@ const Footer = () => {
                         <ul className="list-unstyled">
                             <li><Link to="/features">Features</Link></li>
                             <li><Link to="/roles">Roles</Link></li>
-                            <li><Link to="/">Integrations</Link></li>
-                            <li><Link to="/">API</Link></li>
+                            {/* <li><Link to="/">Integrations</Link></li> */}
+                            {/* <li><Link to="/">API</Link></li> */}
                         </ul>
                     </div>
 
@@ -43,8 +43,8 @@ const Footer = () => {
                         <ul className="list-unstyled">
                             <li><Link to="/download">Download</Link></li>
                             <li><Link to="/contact-us">Contact Us</Link></li>
-                            <li><Link to="/">About Us</Link></li>
-                            <li><Link to="/">Careers</Link></li>
+                            {/* <li><Link to="/">About Us</Link></li> */}
+                            {/* <li><Link to="/">Careers</Link></li> */}
                         </ul>
                     </div>
 
@@ -52,8 +52,8 @@ const Footer = () => {
                     <div className="col-md-2">
                         <h6>Support</h6>
                         <ul className="list-unstyled">
-                            <li><Link to="#">Help Center</Link></li>
-                            <li><Link to="#">Documentation</Link></li>
+                            {/* <li><Link to="#">Help Center</Link></li> */}
+                            {/* <li><Link to="#">Documentation</Link></li> */}
                             <li><Link to="/privacy-policy">Privacy Policy</Link></li>
                             <li><Link to="/terms-and-conditions">Terms of Service</Link></li>
                         </ul>
