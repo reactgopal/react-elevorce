@@ -42,7 +42,7 @@ const Footer = () => {
                         <h6>Company</h6>
                         <ul className="list-unstyled">
                             <li><Link to="/download">Download</Link></li>
-                            <li><Link to="/contact-us">Contact Us</Link></li>
+                            <li><Link to="/inquiry">Inquiry</Link></li>
                             {/* <li><Link to="/">About Us</Link></li> */}
                             {/* <li><Link to="/">Careers</Link></li> */}
                         </ul>

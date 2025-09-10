@@ -407,6 +407,35 @@ hr {
   font-size: var(--fs-400)
 }
 
+.btn-inquiry {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  /* blue gradient */
+  color: #fff;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  /* pill shape */
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  /* reduced shadow */
+  transition: all 0.3s ease;
+}
+
+.btn-inquiry:hover {
+  background: linear-gradient(90deg, #1e40af, #2563eb);
+  /* darker on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+  /* softer hover shadow */
+}
+
+.btn-inquiry:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.2);
+  /* very light when clicked */
+}
+
+
 /* 7) Forms --------------------------------------------------------------- */
 .label {
   display: block;
@@ -1890,10 +1919,11 @@ details[open]>summary {
 /* Very small devices */
 @media (max-width: 320px) {
 
-  .recaptcha-wrapper{
-  justify-content: center;
+  .recaptcha-wrapper {
+    justify-content: center;
 
   }
+
   .recaptcha-wrapper>div {
     transform: scale(0.75);
   }

@@ -45,7 +45,7 @@ const Header = () => {
                         </button>
                     </a> */}
                     <Link to="/inquiry" rel="noopener noreferrer" className="text-white text-decoration-none">
-                        <button className="btn btn-primary">
+                        <button className="btn-inquiry">
                             Inquiry
                             {/* INQUIRY */}
                         </button>
@@ -66,18 +66,17 @@ const Header = () => {
                         <Link to="/" onClick={() => setOpen(false)} className={pathname === "/" ? "active" : ""}>Home</Link>
                         <Link to="/features" onClick={() => setOpen(false)} className={pathname === "/features" ? "active" : ""}>Features</Link>
                         <Link to="/roles" onClick={() => setOpen(false)} className={pathname === "/roles" ? "active" : ""}>Roles</Link>
-                        {/* <Link to="/contact-us" onClick={() => setOpen(false)} className={pathname === "/contact-us" ? "active" : ""}>Contact Us</Link> */}
+                        <Link to="/inquiry" onClick={() => setOpen(false)} className={pathname === "/inquiry" ? "active" : ""}>Inquiry</Link>
                         <Link to="/download" onClick={() => setOpen(false)} className={pathname === "/download" ? "active" : ""}>Download</Link>
-
-                        <a
-                            href="inquiry"
+                        {/* <Link
+                            to="inquiry"
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => setOpen(false)}
                             className="login-btn"
                         >
                             Inquiry
-                        </a>
+                        </Link> */}
                     </nav>
                 </div>
             </div>

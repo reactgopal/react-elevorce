@@ -3,11 +3,12 @@ import { Contact } from "../Services/apiServices";
 import { toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const ContactUs = () => {
+const Inquiry = () => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         phone: "",
+        company: "",
         subject: "",
         message: "",
     });
@@ -52,7 +53,7 @@ const ContactUs = () => {
 
             } else {
                 toast.success(res.message);
-                setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+                setFormData({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
                 setCaptchaValue(null);
                 captchaRef.current.reset();  // <-- reset captcha tick
 
@@ -62,7 +63,7 @@ const ContactUs = () => {
     };
 
     return (
-        <div >
+        <div >  
             {/* Header */}
             <section className="hero-section">
                 <div className="container text-center">
@@ -119,6 +120,15 @@ const ContactUs = () => {
                                 <div className="form-group">
                                     <input
                                         type="text"
+                                        name="company"
+                                        placeholder="Company Name*"
+                                        value={formData.company}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
                                         name="subject"
                                         placeholder="Subject*"
                                         value={formData.subject}
@@ -164,4 +174,4 @@ const ContactUs = () => {
     )
 }
 
-export default ContactUs;
+export default Inquiry;

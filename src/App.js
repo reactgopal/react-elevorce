@@ -8,7 +8,7 @@ import DeletionRequest from './MainComponents/DeletionRequest';
 import Home from './MainComponents/Home';
 import Features from './MainComponents/Features';
 import Roles from './MainComponents/Roles';
-import ContactUs from './MainComponents/ContactUs';
+import Inquiry from './MainComponents/Inquiry';
 import Download from './MainComponents/Download';
 import PrivacyPolicy from './MainComponents/PrivacyPolicy';
 import TermsAndConditions from './MainComponents/TermsAndConditions';
@@ -40,7 +40,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/features" element={<Features />} />
             <Route path="/roles" element={<Roles />} />
-            <Route path="/inquiry" element={<ContactUs />} />
+            <Route path="/inquiry" element={<Inquiry />} />
             <Route path="/download" element={<Download />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
