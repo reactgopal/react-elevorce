@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Contact } from "../Services/apiServices";
 import { toast } from "react-toastify";
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 const Inquiry = () => {
     const [formData, setFormData] = useState({
@@ -14,10 +14,7 @@ const Inquiry = () => {
     });
     const [loading, setLoading] = useState(false);
     const [responseMsg, setResponseMsg] = useState("");
-    const [captchaValue, setCaptchaValue] = useState(null);
-    const captchaRef = useRef(null);
-
-
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -27,25 +24,13 @@ const Inquiry = () => {
     };
 
 
-    const handleCaptchaChange = (value) => {
-        console.log("Captcha value:", value);
-        setCaptchaValue(value);
-    };
-
-
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        // 🔴 Captcha validation
-        if (!captchaValue) {
-            toast.error("Please verify reCAPTCHA!");
-            return;
-        }
 
         setLoading(true);
         setResponseMsg("");
 
-        Contact({ ...formData, "g-recaptcha-response": captchaValue }).then((res) => {
+        Contact(formData).then((res) => {
             console.log(res, " response from contact us");
             if (!res?.success) {
                 toast.error(res.message);
@@ -53,17 +38,14 @@ const Inquiry = () => {
 
             } else {
                 toast.success(res.message);
-                setFormData({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
-                setCaptchaValue(null);
-                captchaRef.current.reset();  // <-- reset captcha tick
-
+                setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
             }
             setLoading(false);
         });
     };
 
     return (
-        <div >  
+        <div >
             {/* Header */}
             <section className="hero-section">
                 <div className="container text-center">
@@ -112,12 +94,12 @@ const Inquiry = () => {
                                     <input
                                         type="text"
                                         name="phone"
-                                        placeholder="Mobile Number (optional)"
+                                        placeholder="Mobile Number"
                                         value={formData.phone}
                                         onChange={handleChange}
                                     />
                                 </div>
-                                <div className="form-group">
+                                {/* <div className="form-group">
                                     <input
                                         type="text"
                                         name="company"
@@ -125,7 +107,7 @@ const Inquiry = () => {
                                         value={formData.company}
                                         onChange={handleChange}
                                     />
-                                </div>
+                                </div> */}
                                 <div className="form-group">
                                     <input
                                         type="text"
@@ -145,22 +127,6 @@ const Inquiry = () => {
                                         required
                                     ></textarea>
                                 </div>
-                                {/* 🔑 Add reCAPTCHA here */}
-                                <div className="form-group mt-3 recaptcha-wrapper">
-                                    <ReCAPTCHA
-                                        ref={captchaRef}
-                                        sitekey="6LfO-cErAAAAAD9wH28C9jb9yu4kRfExmv2Iu63X"
-                                        onChange={handleCaptchaChange}
-                                    />
-                                </div>
-
-                                {/* <div className="form-group mt-3">
-                                    <ReCAPTCHA
-                                        ref={captchaRef}                 // ✅ add ref
-                                        sitekey="6LfO-cErAAAAAD9wH28C9jb9yu4kRfExmv2Iu63X"  // 👉 Replace with your site key
-                                        onChange={handleCaptchaChange}
-                                    />
-                                </div> */}
                                 <button type="submit" className="contact-btn" disabled={loading}>
                                     {loading ? "Sending..." : "Submit"}
                                 </button>

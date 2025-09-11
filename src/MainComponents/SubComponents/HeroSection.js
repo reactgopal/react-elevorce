@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 const HeroSection = () => {
     return (
         <section className="section__padding hero__section">
@@ -32,11 +33,11 @@ const HeroSection = () => {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             viewport={{ once: true }}
                         >
-                            <a href="https://admin.elevorce.com" target="_blank" rel="noopener noreferrer" className="text-white text-decoration-none">
+                            <Link to="/inquiry" rel="noopener noreferrer" className="text-white text-decoration-none">
                                 <button className="btn btn-primary btn-lg px-4 shadow">
                                     Get Started
                                 </button>
-                            </a>
+                            </Link>
                             {/* <button className="btn btn-primary btn-lg px-4 shadow">
                                 Request a Demo
                             </button> */}

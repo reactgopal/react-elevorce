@@ -55,7 +55,7 @@ const Download = () => {
                         {/* <Link to="/https://play.google.com/store/apps/details?id=com.iconfisys.elevorce&hl=en_IN" target="_blank" className="btn btn-success d-flex align-items-center">
                             <i className="bi bi-google-play me-2 fs-4"></i> Google Play
                         </Link> */}
-                        <Link to="https://play.google.com/store/apps/details?id=your_app_id" target="_blank" className="btn btn-success d-flex align-items-center">
+                        <Link to="https://play.google.com/store/apps/details?id=com.iconfisys.elevorce&hl=en_IN" target="_blank" className="btn btn-success d-flex align-items-center">
                             <i className="bi bi-google-play me-2 fs-4"></i> Google Play
                         </Link>
                     </motion.div>

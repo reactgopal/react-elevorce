@@ -444,32 +444,30 @@ hr {
 }
 
 /* Autofill background override */
-input:-webkit-autofill {
+/* input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px inset !important;
-  /* white background */
   -webkit-text-fill-color: #000 !important;
-  /* text color black */
   transition: background-color 5000s ease-in-out 0s;
-  /* hack for Chrome */
-}
+} */
 
 .input,
 .select,
 .textarea {
   width: 100%;
-  background: var(--bg-soft);
+  /* background: var(--bg-soft); */
   color: var(--text);
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius);
   padding: .6rem .75rem;
   outline: none;
-  box-shadow: var(--shadow-sm)
+  box-shadow: var(--shadow-sm);
 }
 
 .input:focus,
 .select:focus,
 .textarea:focus {
   border-color: var(--primary);
+  background-color: white !important;
   /* box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 30%, transparent) */
 }
 
@@ -1863,6 +1861,7 @@ details[open]>summary {
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: #3b82f6;
+  background-color: white !important;
 }
 
 .contact-btn {

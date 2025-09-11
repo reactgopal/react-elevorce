@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://192.168.100.13:8001"   
-// const BASE_URL = "http://admin.elevorce.com"
+// const BASE_URL = "http://192.168.100.13:8001"   
+const BASE_URL = "https://admin.elevorce.com"
 
 export const Contact = async (data) => {
     try {
