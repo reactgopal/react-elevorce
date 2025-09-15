@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Contact } from "../Services/apiServices";
 import { toast } from "react-toastify";
-// import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Inquiry = () => {
     const [formData, setFormData] = useState({
@@ -14,7 +14,9 @@ const Inquiry = () => {
     });
     const [loading, setLoading] = useState(false);
     const [responseMsg, setResponseMsg] = useState("");
-    
+    const [captchaValue, setCaptchaValue] = useState(null);
+    const captchaRef = useRef(null);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -22,15 +24,25 @@ const Inquiry = () => {
             [name]: value,
         }));
     };
+    const handleCaptchaChange = (value) => {
+        console.log("Captcha value:", value);
+        setCaptchaValue(value);
+    };
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        // 🔴 Captcha validation
+        if (!captchaValue) {
+            toast.error("Please verify reCAPTCHA!");
+            return;
+        }
+
         setLoading(true);
         setResponseMsg("");
 
-        Contact(formData).then((res) => {
+        Contact({ ...formData, "g-recaptcha-response": captchaValue }).then((res) => {
             console.log(res, " response from contact us");
             if (!res?.success) {
                 toast.error(res.message);
@@ -38,7 +50,9 @@ const Inquiry = () => {
 
             } else {
                 toast.success(res.message);
-                setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+                setFormData({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
+                setCaptchaValue(null);
+                captchaRef.current.reset();  // <-- reset captcha tic
             }
             setLoading(false);
         });
@@ -94,12 +108,12 @@ const Inquiry = () => {
                                     <input
                                         type="text"
                                         name="phone"
-                                        placeholder="Mobile Number"
+                                        placeholder="Mobile Number (optional)"
                                         value={formData.phone}
                                         onChange={handleChange}
                                     />
                                 </div>
-                                {/* <div className="form-group">
+                                <div className="form-group">
                                     <input
                                         type="text"
                                         name="company"
@@ -107,7 +121,7 @@ const Inquiry = () => {
                                         value={formData.company}
                                         onChange={handleChange}
                                     />
-                                </div> */}
+                                </div>
                                 <div className="form-group">
                                     <input
                                         type="text"
@@ -126,6 +140,14 @@ const Inquiry = () => {
                                         onChange={handleChange}
                                         required
                                     ></textarea>
+                                </div>
+                                {/* 🔑 Add reCAPTCHA here */}
+                                <div className="form-group mt-3 recaptcha-wrapper">
+                                    <ReCAPTCHA
+                                        ref={captchaRef}
+                                        sitekey="6Lc0R8grAAAAAJagedztq0b7EsMVUkv2SfGQI4Jz"
+                                        onChange={handleCaptchaChange}
+                                    />
                                 </div>
                                 <button type="submit" className="contact-btn" disabled={loading}>
                                     {loading ? "Sending..." : "Submit"}
